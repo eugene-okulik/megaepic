@@ -15,7 +15,7 @@ print(((x - y)/1) + (x * y))
 
 a = int(input('Введи первое число: '))
 b = int(input('Введи второе число: '))
-print((a + b)/2)
+print((a + b) / 2)
 print(sqrt(a * b))
 
 
