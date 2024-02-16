@@ -1,3 +1,6 @@
+from math import sqrt
+
+
 a = int(input('Введи первое число: '))
 b = int(input('Введи второе число: '))
 print(a + b)
@@ -9,7 +12,7 @@ x = int(input('Введи первое число: '))
 y = int(input('Введи второе число: '))
 print(((x - y)/1) + (x * y))
    
-from math import sqrt
+
 a = int(input('Введи первое число: '))
 b = int(input('Введи второе число: '))
 print((a + b)/2)
