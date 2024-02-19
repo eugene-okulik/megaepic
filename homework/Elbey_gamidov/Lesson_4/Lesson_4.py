@@ -9,7 +9,7 @@ my_dict = {
 print(my_dict['tuple'][-1])
 my_dict['list'].append(12)
 my_dict['list'].pop(1)
-my_dict['dict'][('i am a tuple',) ] = ('first', )
+my_dict['dict'][('i am a tuple', ) ] = ('first', )
 my_dict['dict'].pop('one')
 my_dict['set'].add(10)
 my_dict['set'].remove('Monday')
