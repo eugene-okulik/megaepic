@@ -5,6 +5,6 @@ for i in diapazon:
     if i % 5 == 0:
         print('Buzz')
     elif i % 3 and i % 5 == 0:
-        print('FuzzBuzz', end = '')
+        print('FuzzBuzz')
     else:
         print(i)

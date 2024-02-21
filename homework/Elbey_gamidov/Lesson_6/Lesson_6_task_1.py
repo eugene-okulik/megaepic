@@ -1,6 +1,6 @@
 text = 'Etiam tincidunt neque erat, quis molestie enim imperdiet vel. Integer urna nisl, facilisis vitae semper at, dignissim vitae libero'
 
-words = text.split() # Перевел все в массив  
+words = text.split()  # Перевел все в массив  
 fin_words = []  # Завел новый массив
 for word in words:  # Иду по циклу
     if word.endswith(','):  # Если слово заканчивается на запятую
