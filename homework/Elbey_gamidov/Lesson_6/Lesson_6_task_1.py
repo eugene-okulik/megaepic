@@ -1,5 +1,6 @@
 text = ('Etiam tincidunt neque erat, quis molestie enim imperdiet vel.'
-'Integer urna nisl, facilisis vitae semper at, dignissim vitae libero')  # Правильно же перенес строку? а то линт ругается
+'Integer urna nisl, facilisis vitae semper at, dignissim vitae libero')  # Правильно перенес строку? а то линт ругается
+
 words = text.split()  # Перевел все в массив
 fin_words = []  # Завел новый массив
 for word in words:  # Иду по циклу
