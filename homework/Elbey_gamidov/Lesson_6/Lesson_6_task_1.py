@@ -6,10 +6,10 @@ fin_words = []
 for word in words:
     if word.endswith(','):
         new_word = word.replace(',', '')
-        fin_words.append('ing' + str(new_word) + str(','))
+        fin_words.append(new_word + 'ing' + ',')
     elif word.endswith('.'):
         second_new_word = word.replace('.', '')
-        fin_words.append('ing' + str(second_new_word) + str('.'))
+        fin_words.append(second_new_word + 'ing' + '.')
     else:
         fin_words.append('ing' + str(word))
 print(' '.join(fin_words))
