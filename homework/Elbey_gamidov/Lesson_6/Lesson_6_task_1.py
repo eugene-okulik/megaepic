@@ -11,5 +11,5 @@ for word in words:
         second_new_word = word.replace('.', '')
         fin_words.append(second_new_word + 'ing' + '.')
     else:
-        fin_words.append('ing' + str(word))
+        fin_words.append(word + 'ing')
 print(' '.join(fin_words))
