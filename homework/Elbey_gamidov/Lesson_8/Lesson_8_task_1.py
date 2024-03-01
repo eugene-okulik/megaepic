@@ -8,5 +8,5 @@ def check_bonus_for_give_salary():
         salary += random()
     print(salary, bonus)
 
-    
+
 check_bonus_for_give_salary()

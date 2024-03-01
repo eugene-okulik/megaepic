@@ -6,6 +6,8 @@ def fibonacci_generator():
 
 
 fibonacci = fibonacci_generator()
+
+
 def for_generator(n):
     for n in range(n):
         fibonacci_number = next(fibonacci)
