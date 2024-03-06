@@ -1,6 +1,5 @@
 def deko(func):
 
-
     def wrapper(*args):
         print(f'function {func.__name__} started now')
         func()
