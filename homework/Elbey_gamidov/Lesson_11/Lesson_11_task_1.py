@@ -21,7 +21,7 @@ for book in books:
         """print(f"Название: {book.title_name}, Автор: {book.author}, Количество страниц: {book.count_page},
         ISBN: {book.ISBN}, Зарегистрирован, Материал: {Book.material}, Наличие текста: {Book.text_bool}")"""
     else:
-        """print(f"Название: {book.title_name}, Автор: {book.author}, Количество страниц: {book.count_page}, ISBN: 
+        """print(f"Название: {book.title_name}, Автор: {book.author}, Количество страниц: {book.count_page}, ISBN:
         {book.ISBN}, Материал: {Book.material}, Наличие текста: {Book.text_bool}")"""
 
 
@@ -43,5 +43,5 @@ for book in books:
             """print(f"Название: {book.title_name}, Автор: {book.author}, Количество страниц: {book.count_page},
             ISBN: {book.ISBN}, Зарегистрирован, Предмет: {book.predmet}, Класс: {book.room}, Задания: есть")"""
         else:
-            """print(f"Название: {book.title_name}, Автор: {book.author}, Количество страниц: {book.count_page}, 
+            """print(f"Название: {book.title_name}, Автор: {book.author}, Количество страниц: {book.count_page},
             ISBN: {book.ISBN}, Предмет: {book.predmet}, Класс: {book.room}")"""
