@@ -44,13 +44,13 @@ class Bouquet:
         return favorite_flower
 
     def sort_flowers_by_stem(self):
-        self.flowers.sort(key = lambda x:x.stem, reverse = True)
+        self.flowers.sort(key=lambda x: x.stem, reverse=True)
 
     def sort_flowers_by_price(self):
-        self.flowers.sort(key = lambda x:x.price, reverse = True)
+        self.flowers.sort(key=lambda x: x.price, reverse=True)
 
     def sort_flower_by_color(self):
-        self.flowers.sort(key = lambda x:x.color)
+        self.flowers.sort(key=lambda x: x.color)
 
 
 red_rose = Rose(55, 'Red', 32, 112)
