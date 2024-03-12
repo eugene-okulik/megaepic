@@ -21,8 +21,7 @@ class Tulpane(Flowers):
 
 class Bouquet:
     def __init__(self):
-            self.flowers = []
-
+        self.flowers = []
 
     def add_flower(self, flower):
         self.flowers.append(flower)
@@ -40,27 +39,21 @@ class Bouquet:
         avg_life = time / len(self.flowers)
         return avg_life
 
-
     def find_flower_avg_life_time(self, life_time):
         favorite_flower = [flower for flower in self.flowers if flower.life_time == life_time]
         return favorite_flower
 
-
     def sort_flowers_by_stem(self):
         self.flowers.sort(key = lambda x: x.stem, reverse = True)
-
 
     def sort_flowers_by_price(self):
         self.flowers.sort(key = lambda x: x.price, reverse = True)
 
-
     def sort_flower_by_color(self):
         self.flowers.sort(key = lambda x: x.color)
 
-
 red_rose = Rose(55, 'Red', 32, 112)
 yellow_tulpane = Tulpane(77, 'Yellow', 66, 114)
-
 
 bouquet = Bouquet()
 bouquet.add_flower(red_rose)
