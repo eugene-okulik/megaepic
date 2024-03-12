@@ -25,8 +25,7 @@ class Bouquet:
 
 
     def add_flower(self, flower):
-        self.flowers.append(flower)        
-
+        self.flowers.append(flower)
 
     def calc(self):
         price = 0
@@ -34,14 +33,13 @@ class Bouquet:
             price += flower.price
         return price
 
-
     def die_time(self):
         time = 0
         for flower in self.flowers:
             time += flower.life_time
         avg_life = time / len(self.flowers)
         return avg_life
-    
+
 
     def find_flower_avg_life_time(self, life_time):
         favorite_flower = [flower for flower in self.flowers if flower.life_time == life_time]
@@ -55,10 +53,10 @@ class Bouquet:
     def sort_flowers_by_price(self):
         self.flowers.sort(key = lambda x: x.price, reverse = True)
 
-    
+
     def sort_flower_by_color(self):
         self.flowers.sort(key = lambda x: x.color)
-    
+
 
 red_rose = Rose(55, 'Red', 32, 112)
 yellow_tulpane = Tulpane(77, 'Yellow', 66, 114)
