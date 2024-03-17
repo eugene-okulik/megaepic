@@ -2,7 +2,7 @@ INSERT INTO students (name, second_name) values ('Elbey', 'Gamidov')
 
 INSERT INTO `groups` (title, start_date, end_date) values ('Spider-man', '15.02.2024', '15.06.2024')
 
-INSERT INTO students (name , second_name , group_id) values ('Elbey', 'Gamidov', 457)
+UPDATE students SET group_id = 457 WHERE students.id = 504
 
 INSERT INTO books (title, taken_by_student_id) values ('Part1', 504)
 
