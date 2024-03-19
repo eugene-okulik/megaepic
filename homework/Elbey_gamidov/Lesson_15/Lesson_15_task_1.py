@@ -4,8 +4,8 @@ db = mysql.connect(
     user='',
     passwd='',
     host='',
-    port='',
-    database=''
+    port=25060,
+    database='st-onl'
 )
 
 cursor = db.cursor(dictionary=True)
