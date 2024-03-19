@@ -1,12 +1,6 @@
 import mysql.connector as mysql
 
-db = mysql.connect(
-    user='',
-    passwd='',
-    host='',
-    port=25060,
-    database='st-onl'
-)
+
 
 cursor = db.cursor(dictionary=True)
 
