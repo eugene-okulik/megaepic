@@ -1,6 +1,12 @@
 import mysql.connector as mysql
 
-
+db = mysql.connect(
+    user='',
+    passwd='',
+    host='',
+    port='',
+    database=''
+)
 
 cursor = db.cursor(dictionary=True)
 
