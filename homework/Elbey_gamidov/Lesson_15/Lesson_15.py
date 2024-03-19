@@ -84,7 +84,7 @@ cursor.execute(insert_query_mark, mark2_data)
 print(cursor.fetchone())
 
 
-new_query = '''
+new_query = f'''
 SELECT students.name, students.second_name, gs.title AS group_title,
 b.title AS book_title, m.value AS mark_value,
 l.title AS lesson_title, s.title AS subjet_title
@@ -94,7 +94,7 @@ LEFT JOIN books AS b ON students.id = b.taken_by_student_id
 LEFT JOIN marks AS m ON students.id = m.student_id
 LEFT JOIN lessons AS l ON m.lesson_id = l.id
 LEFT JOIN subjets AS s ON l.subject_id = s.id
-WHERE students.id = 504;
+WHERE students.id = {student_id};
 '''
 cursor.execute(new_query)
 print(cursor.fetchall())
