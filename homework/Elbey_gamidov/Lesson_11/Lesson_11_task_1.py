@@ -2,7 +2,7 @@ class Book:
     material = 'бумага'
     text_bool = 'да'
 
-    def __init__(self, title_name, author, count_page, ISBN, reserved_or_not,):
+    def __init__(self, title_name, author, count_page, ISBN, reserved_or_not):
         self.title_name = title_name
         self.author = author
         self.count_page = count_page
@@ -18,11 +18,9 @@ fifth_book = Book('Береза', 'Есенин', 800, 73945841, False)
 books = [first_book, second_book, third_book, fourth_book, fifth_book]
 for book in books:
     if book.reserved_or_not:
-        """print(f"Название: {book.title_name}, Автор: {book.author}, Количество страниц: {book.count_page},
-        ISBN: {book.ISBN}, Зарегистрирован, Материал: {Book.material}, Наличие текста: {Book.text_bool}")"""
+        print(f"Название: {book.title_name}, Автор: {book.author}, Количество страниц: {book.count_page}, ISBN: {book.ISBN}, Зарегистрирован, Материал: {Book.material}, Наличие текста: {Book.text_bool}")
     else:
-        """print(f"Название: {book.title_name}, Автор: {book.author}, Количество страниц: {book.count_page}, ISBN:
-        {book.ISBN}, Материал: {Book.material}, Наличие текста: {Book.text_bool}")"""
+        print(f"Название: {book.title_name}, Автор: {book.author}, Количество страниц: {book.count_page}, ISBN: {book.ISBN}, Материал: {Book.material}, Наличие текста: {Book.text_bool}")
 
 
 class SchoolBook(Book):
@@ -40,8 +38,7 @@ books = [six_book, seven_book]
 for book in books:
     if hasattr(book, 'predmet'):
         if book.reserved_or_not and book.task:
-            """print(f"Название: {book.title_name}, Автор: {book.author}, Количество страниц: {book.count_page},
-            ISBN: {book.ISBN}, Зарегистрирован, Предмет: {book.predmet}, Класс: {book.room}, Задания: есть")"""
+            print(f"Название: {book.title_name}, Автор: {book.author}, Количество страниц: {book.count_page}, ISBN: {book.ISBN}, Зарегистрирован, Предмет: {book.predmet}, Класс: {book.room}, Задания: есть")
         else:
-            """print(f"Название: {book.title_name}, Автор: {book.author}, Количество страниц: {book.count_page},
-            ISBN: {book.ISBN}, Предмет: {book.predmet}, Класс: {book.room}")"""
+            print(f"Название: {book.title_name}, Автор: {book.author}, Количество страниц: {book.count_page}, ISBN: {book.ISBN}, Предмет: {book.predmet}, Класс: {book.room}")
+
