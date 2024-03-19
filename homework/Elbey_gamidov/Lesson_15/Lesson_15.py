@@ -86,7 +86,7 @@ print(cursor.fetchone())
 
 new_query = '''
 SELECT students.name, students.second_name, gs.title AS group_title,
-b.title AS book_title, m.value AS mark_value, 
+b.title AS book_title, m.value AS mark_value,
 l.title AS lesson_title, s.title AS subjet_title
 FROM students
 JOIN `groups` AS gs ON students.group_id = gs.id
