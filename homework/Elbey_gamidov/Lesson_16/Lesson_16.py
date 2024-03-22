@@ -27,12 +27,15 @@ try:
         next(csv_reader)  # Пропустили заголовок
         for row in csv_reader:
             name, second_name, group_title, book_title, subject_title, lesson_title, mark_value = row
-            query = "SELECT students.name, students.second_name, `groups`.title, students.subject_title, students.lesson_title, students.mark_value " \
+            query = """
+                    SELECT students.name, students.second_name,
+                    `groups`.title, students.subject_title, students.lesson_title, students.mark_value " \
                     "FROM students " \
                     "JOIN `groups` ON students.group_id = `groups`.id " \
                     "WHERE students.name = %s " \
                     "AND students.second_name = %s " \
                     "AND `groups`.title = %s"
+                    """
             cursor.execute(query, (name, second_name, group_title))
             result = cursor.fetchall()
             if not result:
