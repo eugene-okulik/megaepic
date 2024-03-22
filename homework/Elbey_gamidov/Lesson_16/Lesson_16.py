@@ -3,7 +3,6 @@ import os
 import dotenv
 import csv
 
-
 dotenv.load_dotenv()
 
 db = mysql.connect(
@@ -22,24 +21,36 @@ homework_path = os.path.dirname(os.path.dirname(base_path))
 eugene_file_path = os.path.join(homework_path, 'eugene_okulik', 'Lesson_16', 'hw_data', 'data.csv')
 missing_data = []
 
+try:
+    with open(eugene_file_path, newline='') as file:
+        csv_reader = csv.reader(file)
+        next(csv_reader)  # Пропустили заголовок
+        for row in csv_reader:
+            name, second_name, group_title, book_title, subject_title, lesson_title, mark_value = row
+            query = "SELECT * FROM students WHERE name = %s AND second_name = %s AND group_title = %s"
+            cursor.execute(query, (name, second_name, group_title))
+            result = cursor.fetchall()
+            if not result:
+                missing_data.append('Some missing')
 
-with open(eugene_file_path, newline='') as file:
-    csv_reader = csv.reader(file)
-    next(csv_reader)  # Пропустили заголовок
-    for row in csv_reader:
-        name, last_name, city = row
-        query = f"SELECT * FROM students WHERE name = '{name}' AND last_name = '{last_name}' AND city = '{city}'"
-        cursor.execute(query)
-        result = cursor.fetchall()
-        if not result:
-            missing_data.append(row)
+            '''insert_query = "INSERT INTO students (name, second_name, group_title, book_title, subject_title, 
+            lesson_title, mark_value) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            cursor.execute(insert_query,(name, second_name, group_title, book_title,
+             subject_title, lesson_title, mark_value))'''
+
+    db.commit()
+
+
+except mysql.Error as e:
+    print(f"Ошибка при выполнении запроса: {e}")
+    db.rollback()
 
 if missing_data:
-    print('Missing')
     for data in missing_data:
         print(data)
 else:
-    print('Данные собраны, ничего не упущено')
+    print('Данные собраны')
+
 
 cursor.close()
 db.close()
