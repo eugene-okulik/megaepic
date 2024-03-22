@@ -27,19 +27,18 @@ try:
         next(csv_reader)  # Пропустили заголовок
         for row in csv_reader:
             name, second_name, group_title, book_title, subject_title, lesson_title, mark_value = row
-            query = "SELECT * FROM students WHERE name = %s AND second_name = %s AND group_title = %s"
+            query = "SELECT students.name, students.second_name, `groups`.title, students.subject_title, students.lesson_title, students.mark_value " \
+                    "FROM students " \
+                    "JOIN `groups` ON students.group_id = `groups`.id " \
+                    "WHERE students.name = %s " \
+                    "AND students.second_name = %s " \
+                    "AND `groups`.title = %s"
             cursor.execute(query, (name, second_name, group_title))
             result = cursor.fetchall()
             if not result:
                 missing_data.append('Some missing')
 
-            '''insert_query = "INSERT INTO students (name, second_name, group_title, book_title, subject_title,
-            lesson_title, mark_value) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-            cursor.execute(insert_query,(name, second_name, group_title, book_title,
-             subject_title, lesson_title, mark_value))'''
-
     db.commit()
-
 
 except mysql.Error as e:
     print(f"Ошибка при выполнении запроса: {e}")
@@ -50,7 +49,6 @@ if missing_data:
         print(data)
 else:
     print('Данные собраны')
-
 
 cursor.close()
 db.close()
