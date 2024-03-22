@@ -33,7 +33,7 @@ try:
             if not result:
                 missing_data.append('Some missing')
 
-            '''insert_query = "INSERT INTO students (name, second_name, group_title, book_title, subject_title, 
+            '''insert_query = "INSERT INTO students (name, second_name, group_title, book_title, subject_title,
             lesson_title, mark_value) VALUES (%s, %s, %s, %s, %s, %s, %s)"
             cursor.execute(insert_query,(name, second_name, group_title, book_title,
              subject_title, lesson_title, mark_value))'''
