@@ -30,7 +30,7 @@ try:
             name = 'Elbey'
             second_name = 'Gamidov'
             group_title = 'Spider-man'
-            query = f'''
+            query = '''
             SELECT students.name, students.second_name, gs.title AS group_title,
             b.title AS book_title, m.value AS mark_value,
             l.title AS lesson_title, s.title AS subjet_title
