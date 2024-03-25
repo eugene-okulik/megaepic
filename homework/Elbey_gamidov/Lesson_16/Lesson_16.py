@@ -14,7 +14,6 @@ db = mysql.connect(
 )
 cursor = db.cursor()
 
-
 base_path = os.path.dirname(__file__)
 file_path = os.path.join(base_path, 'data.csv')
 homework_path = os.path.dirname(os.path.dirname(base_path))
@@ -27,9 +26,7 @@ try:
         next(csv_reader)  # Пропустили заголовок
         for row in csv_reader:
             name, second_name, group_title, book_title, subject_title, lesson_title, mark_value = row
-            name = 'Elbey'
-            second_name = 'Gamidov'
-            group_title = 'Spider-man'
+
             query = '''
             SELECT students.name, students.second_name, gs.title AS group_title,
             b.title AS book_title, m.value AS mark_value,
@@ -42,14 +39,17 @@ try:
             LEFT JOIN subjets AS s ON l.subject_id = s.id
             WHERE students.name = %s
             AND students.second_name = %s
-            AND gs.title = %s;
+            AND gs.title = %s
+            AND b.title = %s
+            AND m.value = %s
+            AND l.title = %s
+            AND s.title = %s;
             '''
-            cursor.execute(query, (name, second_name, group_title))
+            cursor.execute(query, (row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
             result = cursor.fetchall()
             if not result:
-                missing_data.append('Some missing')
+                missing_data.append(row)
 
-    db.commit()
 
 except mysql.Error as e:
     print(f"Ошибка при выполнении запроса: {e}")
@@ -57,9 +57,9 @@ except mysql.Error as e:
 
 if missing_data:
     for data in missing_data:
-        print(data)
+        print("Данные не найдены в базе данных:", data)
 else:
-    print('Данные собраны')
+    print('Все данные из файла найдены в базе данных')
 
 cursor.close()
 db.close()
