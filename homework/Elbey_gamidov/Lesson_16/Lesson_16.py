@@ -41,9 +41,9 @@ try:
             AND students.second_name = %s
             AND gs.title = %s
             AND b.title = %s
-            AND m.value = %s
+            AND s.title = %s
             AND l.title = %s
-            AND s.title = %s;
+            AND m.value = %s;
             '''
             cursor.execute(query, (row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
             result = cursor.fetchall()
