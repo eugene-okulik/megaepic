@@ -20,6 +20,7 @@ def search_text_in_files(folder_path, search_text):
                     context = " ".join(words[start_index:end_index])
                     print(f"Context: {context}")
 
+
 # Проверка на  наличие аргументов для командной строки
 if len(sys.argv) < 4:
     print("Usage: analyzer.py <folder> --text <search_text>")
