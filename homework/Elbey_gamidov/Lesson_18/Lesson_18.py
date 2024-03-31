@@ -17,7 +17,9 @@ def create():
     post_id = response['id']
     return post_id
 
+
 post_id = create()
+
 
 def update_put(post_id):
     body = {
@@ -28,7 +30,7 @@ def update_put(post_id):
             "CPU model": "Intel Core i9",
             "Hard disk size": "1 TB",
             "color": "silver"
-   }
+        }
 }
     headers = {'Content-Type': 'application/json'}
     response = requests.put(f'https://api.restful-api.dev/objects/{post_id}', json=body, headers=headers).json()
