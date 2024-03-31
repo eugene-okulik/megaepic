@@ -31,7 +31,7 @@ def update_put(post_id):
             "Hard disk size": "1 TB",
             "color": "silver"
         }
-}
+    }
     headers = {'Content-Type': 'application/json'}
     response = requests.put(f'https://api.restful-api.dev/objects/{post_id}', json=body, headers=headers).json()
     print(response)
