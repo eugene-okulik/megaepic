@@ -1,26 +1,26 @@
 import pytest
 import requests
+import random
 
 
-@pytest.fixture(scope="module")
-def start_testing():
+@pytest.fixture(scope="session")
+def before_run_and_end():
     print('Start testing')
     yield
-    print('Testing completed')
+    print('Testing complete')
 
 
 @pytest.fixture()
-def setup():
+def before_all_tests_end():
     print('before test')
-    post_id = create()
-    yield post_id
-    delete_object(post_id)
+    yield
     print('after test')
 
 
-def create():
+@pytest.fixture()
+def get_object_id():
     body = {
-        "name": "Apple MacBook Pro 162",
+        "name": "Apple MacBook Pro 16",
         "data": {
             "year": 2019,
             "price": 1849.99,
@@ -28,64 +28,50 @@ def create():
             "Hard disk size": "1 TB"
         }
     }
-    headers = {'Content-Type': 'application/json'}
-    response = requests.post('https://api.restful-api.dev/objects', json=body, headers=headers).json()
-    post_id = response['id']
-    return post_id
+    headers = {'content-type': 'application/json'}
+    response = requests.post('https://api.restful-api.dev/objects', json=body, headers=headers)
+    object_id = response.json()['id']
+    yield object_id
+    print('delete the post')
+    requests.delete(f'https://api.restful-api.dev/objects/{object_id}')
 
 
-def update_object_name(post_id, new_name):
-    body = {
-        "name": new_name
-    }
-    headers = {'Content-Type': 'application/json'}
-    response = requests.patch(f'https://api.restful-api.dev/objects/{post_id}', json=body, headers=headers).json()
-    return response['name']
+@pytest.mark.medium
+def test_get_one_post(get_object_id, before_run_and_end):
+    print('test')
+    response = requests.get(f'https://api.restful-api.dev/objects?id=3&id=5&id={get_object_id}')
+    assert response.json()['id'] == get_object_id
 
 
-def get_object_by_id(post_id):
-    response = requests.get(f'https://api.restful-api.dev/objects/{post_id}').json()
-    return response
-
-
-def delete_object(post_id):
-    response = requests.delete(f'https://api.restful-api.dev/objects/{post_id}').json()
-    return response
+@pytest.mark.medium
+def test_get_all_posts(before_all_tests_end):
+    response = requests.get('https://api.restful-api.dev/objects').json()
+    assert len(response) == 14
 
 
 @pytest.mark.critical
+def test_patch_one_post(get_object_id, before_all_tests_end):
+    body = {
+        "name": "New name for test"
+}
+    response = requests.patch(f'https://api.restful-api.dev/objects/{get_object_id}', json=body)
+    assert response.json['name'] == 'New name for test'
+
+
 @pytest.mark.parametrize('name', ['name1', 'name2', 'name3'])
-def test_create_object(start_testing, setup, name):
-    assert create_object(name) is not None
-
-
-def create_object(name):
+def test_add_post(before_all_tests_end, name):
     body = {
         "name": name,
         "data": {
-            "year": 2022,
-            "price": 999.99,
-            "CPU model": "Intel Core i7",
-            "Hard disk size": "512 GB"
-        }
+        "year": 2019,
+        "price": 1849.99,
+        "CPU model": "Intel Core i9",
+        "Hard disk size": "1 TB"
     }
-    headers = {'Content-Type': 'application/json'}
-    response = requests.post('https://api.restful-api.dev/objects', json=body, headers=headers).json()
+}
+    headers = {'content-type': 'application/json'}
+    response = requests.post('https://api.restful-api.dev/objects', json=body, headers=headers)
+    assert response.status_code == 200
+    assert response.json()['name'] == name
+    print(response.name)
 
-    return response
-
-
-@pytest.mark.medium
-def test_update_object_name(setup):
-    assert update_object_name(setup, 'name') == 'name'
-
-
-@pytest.mark.medium
-def test_get_object_by_id(setup):
-    assert get_object_by_id(setup) is not None
-
-
-@pytest.mark.medium
-def test_delete_object(setup):
-    response = delete_object(setup)
-    assert response['message'] == f"Object with id = {setup} has been deleted."
