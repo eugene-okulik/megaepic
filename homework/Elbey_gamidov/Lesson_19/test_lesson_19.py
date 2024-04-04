@@ -39,7 +39,7 @@ def get_object_id():
 @pytest.mark.medium
 def test_get_one_post(get_object_id, before_run_and_end):
     print('test')
-    response = requests.get(f'https://api.restful-api.dev/objects?id=3&id=5&id={get_object_id}')
+    response = requests.get(f'https://api.restful-api.dev/objects?id={get_object_id}')
     assert response.json()['id'] == get_object_id
 
 
