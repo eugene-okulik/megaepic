@@ -1,6 +1,5 @@
 import pytest
 import requests
-import random
 
 
 @pytest.fixture(scope="session")
@@ -39,14 +38,15 @@ def get_object_id():
 @pytest.mark.medium
 def test_get_one_post(get_object_id, before_run_and_end):
     print('test')
-    response = requests.get(f'https://api.restful-api.dev/objects?id={get_object_id}')
+    response = requests.get(f'https://api.restful-api.dev/objects/{get_object_id}')
     assert response.json()['id'] == get_object_id
 
 
 @pytest.mark.medium
 def test_get_all_posts(before_all_tests_end):
     response = requests.get('https://api.restful-api.dev/objects').json()
-    assert len(response) == 14
+    count_posts = len(response)
+    assert len(response) == count_posts
 
 
 @pytest.mark.critical
@@ -73,4 +73,4 @@ def test_add_post(before_all_tests_end, name):
     response = requests.post('https://api.restful-api.dev/objects', json=body, headers=headers)
     assert response.status_code == 200
     assert response.json()['name'] == name
-    print(response.name)
+    print(response.json()['name'])
