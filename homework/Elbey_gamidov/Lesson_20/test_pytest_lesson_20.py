@@ -7,8 +7,8 @@ from dataclasses import dataclass
 class ObjectData(BaseModel):
     year: int
     price: float
-    CPU_model: str = Field(alias='CPU_model')
-    Hard_disk_size: str = Field(alias='Hard_disk_size')
+    CPU_model: str = Field(alias='CPU model')
+    Hard_disk_size: str = Field(alias='Hard disk size')
 
 
 class Objects(BaseModel):
