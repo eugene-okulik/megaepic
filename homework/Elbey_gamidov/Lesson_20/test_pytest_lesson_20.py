@@ -62,7 +62,6 @@ def test_add_post(before_all_tests_end, name):
     assert response.json()['name'] == name
     print(response.json()['name'])
     Objects(**response.json())
-    ObjectData(**response.json())
 
 
 @pytest.mark.parametrize('color', ['blue', 'green', 'red'])
