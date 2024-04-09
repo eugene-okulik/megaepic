@@ -36,7 +36,6 @@ def test_negative_post(create_post_endpoint, data):
 
 @pytest.mark.parametrize('data', TEST_DATA)
 def test_put_post(update_post_object_endpoint):
-    headers = {'content-type': 'application/json'}
     update_post_object_endpoint.make_cnahges_in_post(id, TEST_DATA)
     update_post_object_endpoint.check_response_is_200()
     update_post_object_endpoint.check_response_name_is_correct(TEST_DATA['name'])
@@ -53,7 +52,6 @@ def test_patch_post(patch_post_endpoint):
             "color": "blue"
         }
     }
-    headers = {'content-type': 'application/json'}
     patch_post_endpoint.patch_new_object(id, body)
     patch_post_endpoint.check_response_is_200()
     patch_post_endpoint.check_response_name_is_correct(body['name'])
