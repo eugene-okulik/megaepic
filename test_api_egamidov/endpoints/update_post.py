@@ -1,4 +1,4 @@
-from megaepic.test_api_egamidov.endpoints.God_of_endpoints import Endpoint
+from endpoints.God_of_endpoints import Endpoint
 import requests
 import allure
 

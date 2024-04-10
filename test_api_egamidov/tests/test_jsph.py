@@ -55,3 +55,8 @@ def test_patch_post(patch_post_endpoint):
     patch_post_endpoint.patch_new_object(id, body)
     patch_post_endpoint.check_response_is_200()
     patch_post_endpoint.check_response_name_is_correct(body['name'])
+
+
+def test_delete_post(delete_post_endpoint):
+    delete_post_endpoint.delete_object(id)
+    delete_post_endpoint.check_response_is_200()

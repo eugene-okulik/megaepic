@@ -1,7 +1,8 @@
 import pytest
 from endpoints.create_object import CreateObject
 from endpoints.update_post import UpdateObject
-from megaepic.test_api_egamidov.endpoints.patch_post import PatchObject
+from endpoints.patch_post import PatchObject
+from endpoints.delete_object import DeleteObject
 
 
 @pytest.fixture()
@@ -17,6 +18,11 @@ def create_post_endpoint():
 @pytest.fixture()
 def patch_post_endpoint():
     return PatchObject()
+
+
+@pytest.fixture()
+def delete_post_endpoint():
+    return DeleteObject()
 
 
 @pytest.fixture(scope="session")
