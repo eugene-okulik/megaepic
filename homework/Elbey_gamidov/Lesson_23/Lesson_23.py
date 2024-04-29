@@ -1,5 +1,4 @@
 from selenium import webdriver
-from time import sleep
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import pytest
@@ -14,7 +13,6 @@ def driver():
     chrome_driver.implicitly_wait(3)
     chrome_driver.maximize_window()
     yield chrome_driver
-    sleep(3)
 
 
 def test_task_1(driver):
@@ -95,19 +93,16 @@ def test_task_2(driver):
 
 def test_task_3_subtask1(driver):
     driver.get('https://www.qa-practice.com/elements/select/single_select')
-    choose = driver.find_element(By.ID, 'id_choose_language')
-    choose.click()
-    choose.send_keys(Keys.ARROW_DOWN)
-    choose.send_keys(Keys.ENTER)
-
+    select = driver.find_element(By.ID, 'id_choose_language')
+    dropdown = Select(select)
+    dropdown.select_by_value('1')
     submit = driver.find_element(By.ID, 'submit-id-submit')
     submit.click()
 
     wait = WebDriverWait(driver, 5)
     wait.until(EC.visibility_of_element_located((By.ID, 'result')))
     result = driver.find_element(By.ID, 'result-text')
-    python_value = driver.find_element(By.CSS_SELECTOR, 'option[value="1"]')
-    assert result.text == python_value.text
+    assert result.text == 'Python'
 
 
 def test_task_3_subtask2(driver):
