@@ -5,7 +5,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
-# from selenium.webdriver.common.alert import Alert
+from selenium.webdriver.common.alert import Alert
 
 
 @pytest.fixture()
@@ -27,16 +27,17 @@ def test_task_1(driver):
     wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'a[onclick="addToCart(1)"]')))
     button = driver.find_element(By.CSS_SELECTOR, 'a[onclick="addToCart(1)"]')
     button.click()
-    button.send_keys(Keys.ENTER)
-    # driver.implicitly_wait(10)
-    # alert = Alert(driver)
-    # alert.accept()
+    wait.until(EC.alert_is_present())
+    alert = Alert(driver)
+    alert.accept()
 
     driver.close()
     driver.switch_to.window(driver.window_handles[0])
     wait = WebDriverWait(driver, 5)
     wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'h4.card-title a[href="prod.html?idp_=1"]')))
     driver.find_element(By.ID, 'cartur').click()
+    driver.close()
+    driver.switch_to.window(driver.window_handles[1])
     wait = WebDriverWait(driver, 5)
     wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'tr.success td:nth-child(2)')))
     expect_phone = driver.find_element(By.CSS_SELECTOR, 'tr.success td:nth-child(2)')
