@@ -3,14 +3,12 @@ import requests
 import allure
 
 
-class CreateObject(Endpoint):
+class PutObject(Endpoint):
 
-    @allure.step('Create new object')
-    def create_new_object(self, body, headers=None):
-        if len(body['body']) > 1000:
-            self.url = (f'{self.url}dlinnopost')
+    @allure.step('Put new object')
+    def put_new_object(self, body, headers=None):
         headers = headers if headers else self.headers
-        self.response = requests.post(
+        self.response = requests.put(
             self.url,
             json=body,
             headers=headers)
