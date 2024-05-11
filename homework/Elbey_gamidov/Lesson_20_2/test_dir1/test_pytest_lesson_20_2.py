@@ -35,7 +35,7 @@ def test_patch_one_post(get_object_id, before_all_tests_end):
         "name": "New name for test"
     }
     response = requests.patch(f'https://api.restful-api.dev/objects/{get_object_id}', json=body)
-    with allure.step(f'Check this name = New name for test'):
+    with allure.step('Check this name = New name for test'):
         assert response.json()['name'] == 'New name for test'
 
 
